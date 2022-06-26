@@ -15,6 +15,7 @@ numbers.forEach((btn) =>
     calculator.appendNumber(e.target.innerText);
   })
 );
+
 operations.forEach((btn) =>
   btn.addEventListener("click", (e) => {
     calculator.operationClicked(e);
@@ -24,12 +25,15 @@ operations.forEach((btn) =>
 equals.addEventListener("click", (e) => {
   calculator.equalsClicked(e);
 });
+
 clear.addEventListener("click", (e) => {
   calculator.clear();
 });
+
 del.addEventListener("click", (e) => {
   calculator.delete();
 });
+
 sign.addEventListener("click", (e) => {
   calculator.sign();
 });
