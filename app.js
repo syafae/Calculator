@@ -4,10 +4,11 @@ const operations = document.querySelectorAll("[data-operation]");
 const numbers = document.querySelectorAll("[data-number]");
 const del = document.querySelector("[data-delete]");
 const clear = document.querySelector("[data-clear]");
-const output = document.getElementById("res");
+const output = document.querySelector("[data-output]");
+const history = document.querySelector("[data-history]");
 const equals = document.querySelector("[data-equals]");
 const sign = document.querySelector("[data-sign]");
-const calculator = new Calculator(output);
+const calculator = new Calculator(output, history);
 
 numbers.forEach((btn) =>
   btn.addEventListener("click", (e) => {
@@ -16,19 +17,12 @@ numbers.forEach((btn) =>
 );
 operations.forEach((btn) =>
   btn.addEventListener("click", (e) => {
-    if (calculator.prevOpearnd !== "") {
-      calculator.calculate();
-      calculator.operation = e.target.innerText;
-    } else {
-      calculator.prevOpearnd = calculator.currentOperand;
-      calculator.operation = e.target.innerText;
-      calculator.currentOperand = "";
-    }
+    calculator.operationClicked(e);
   })
 );
 
 equals.addEventListener("click", (e) => {
-  calculator.calculate();
+  calculator.equalsClicked(e);
 });
 clear.addEventListener("click", (e) => {
   calculator.clear();
